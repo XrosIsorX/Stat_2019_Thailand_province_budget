@@ -19,6 +19,10 @@ function drawChart() {
     var query = new google.visualization.Query(descriptive_url + queryString );
     query.send(drawPieAllBudget);
 
+    var queryString = encodeURIComponent("select A, C, D, E");
+    var query = new google.visualization.Query(budget_url + queryString );
+    query.send(drawLinePartBudget);
+
     // Province
     var queryString = encodeURIComponent("select A, E");
     var query = new google.visualization.Query(budget_url + queryString );
@@ -82,6 +86,31 @@ function drawPieAllBudget(response) {
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_all_budget'));
     chart.draw(data, options);
+}
+
+function drawLinePartBudget(response) {
+    if (response.isError()) {
+        errorAlert(response);
+        return;
+    }
+
+    var data = response.getDataTable();
+
+    var options = {
+        title: "งบประมาณแต่ละประเภท",
+        subtitle : "หน่วย บาท",
+        vAxis:{
+            title: 'งบประมาณ'
+        },
+        hAxis: {
+            title: 'ปี'
+        },
+    };
+
+    var chart = new google.charts.Line(
+        document.getElementById("line_part_budget")
+    );
+    chart.draw(data, google.charts.Line.convertOptions(options));
 }
 
 function drawLineProvince(response) {
