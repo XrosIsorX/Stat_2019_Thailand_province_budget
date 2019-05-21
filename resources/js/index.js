@@ -118,7 +118,7 @@ function drawPieProvince(response) {
     var data = response.getDataTable();
     // data.sort({column: 1, desc: true});
     var options = {
-        title: "สัดส่วนการจัดสรรงบประมาณแต่ละส่วน",
+        title: "สัดส่วนการจัดสรรงบประมาณแก่กลุ่มจังหวัด",
         is3D: true,
     };
 
@@ -136,7 +136,7 @@ function drawLineAllProvince(response) {
     var data = response.getDataTable();
 
     var options = {
-        title: "งบประมาณรวมของจังหวัดทั้งหมด",
+        title: "งบประมาณแต่ละกลุ่มจังหวัด",
         subtitle : "หน่วย บาท",
         vAxis:{
             title: 'งบประมาณ'
